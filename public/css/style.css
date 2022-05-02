@@ -1,0 +1,20 @@
+.flex-box {
+    display:flex;
+    justify-content:space-between;
+    outline: 2px dashed blue;
+  }
+  
+  .flex-box-2 {
+    display:flex;
+    justify-content: flex-end;
+    outline: 2px deeppink dashed;
+  }
+
+  .border {
+    border: 2px indigo dashed;
+    margin-left: -18px;
+    }
+
+  .w-100 {
+    width: 100%;
+  }
