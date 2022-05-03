@@ -14,14 +14,17 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    public function index()
+    {
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()  // create new post
+    public function create()
     {
         return view('post.create');
     }
@@ -34,10 +37,10 @@ class PostController extends Controller
      */
     
 
-    public function store(Request $request) //(we called this postCreate() in Tinkergram) for saving a new post
+    public function store(Request $request)
     {
         $data = request()->validate([
-            'description' => 'required',
+            'caption' => 'required',
             'postpic' => ['required', 'image'],
         ]);
 
@@ -46,10 +49,9 @@ class PostController extends Controller
         $imagePath = request('postpic')->store('uploads', 'public');
 
         $profile->user_id = $user->id;
-        $profile->description = request('description');
+        $profile->caption = request('caption');
         $profile->image = $imagePath;
         $saved = $profile->save();
-        
 
         if ($saved) {
             return redirect('/profile');
@@ -64,11 +66,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($postID){                      // for displaying a single post
+    public function show($postID){
         $post = Post::where('id', $postID)->first();
         $user = Auth::user();
         
-        return view('post.showPosts',[
+        return view('post.show', [
             'post' => $post,
             'user' => $user
         ]);
@@ -81,7 +83,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)  //to edit a single post
+    public function edit(Post $post)
     {
         //
     }
@@ -93,7 +95,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)  //  (we called this postEdit() for Tinkergram) for saving an edit
+    public function update(Request $request, Post $post)
     {
         //
     }
@@ -104,7 +106,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($post)    // for deleting a single post.
+    public function destroy($post)
     {
         Post::where('id', $post)->first()->delete();
         return redirect('/profile');

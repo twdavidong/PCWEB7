@@ -33,10 +33,10 @@
                 <tr class="spacer">
                         <tr>
                             <td class='color'>
-                            <h2><a href="{{ url('/profile') }}">Profile</a>
+                            <h2><a href="{{ url('/profile') }}">View Items</a>
                             </h2></td>
                             <td class='color'>
-                            <h2><a href="{{ url('/post/showPosts') }}">View Items</a>
+                            <h2><a href="{{ url('/post/showPosts') }}">Messages</a>
                             </h2></td>
                             <td class='color'>
                             <h2><a href="{{ url('/post/create') }}">Add Item</a>
