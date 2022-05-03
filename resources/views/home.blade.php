@@ -36,7 +36,7 @@
                             <h2><a href="{{ url('/profile') }}">Profile</a>
                             </h2></td>
                             <td class='color'>
-                            <h2><a href="{{ url('/[post/show]') }}">View Items</a>
+                            <h2><a href="{{ url('/post/showPosts') }}">View Items</a>
                             </h2></td>
                             <td class='color'>
                             <h2><a href="{{ url('/post/create') }}">Add Item</a>

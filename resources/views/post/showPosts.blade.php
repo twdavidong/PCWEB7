@@ -4,16 +4,31 @@
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <h3>Test</h3>              
-            <?php 
-                $query = "";
-                $query_run = mysqli_query($con, $query);
+            <h3>I want this item</h3>              
+		<div class="right">
 
-                if(mysqli_num_rows($query_run) > 0) {
-                    $_SESSION["username"] = $user;
+<form action="{{ route('profile.postEdit', ['id' => $profile->id]) }}" enctype="multipart/form-data" method="post">
+                   @csrf
+                   @if ($profile == null)
+                       <div>where my profile</div>
+                   @endif
+                   <div class="form-group row">
+                       <label for="description">Description</label>
+                       <input class="form-control" type="text" name="description" id="description"
+                           value="{{ $profile->description }}">
+                   </div>
 
-                }
-            ?>
+                   <div class="form-group row">
+                       <label for="profilepic">Profile picture</label>
+                       <input type="file" name="profilepic" id="profilepic">
+                   </div>
+
+                   <div class="form-group row">
+                       <button type="submit" class="btn btn-primary">Amend profile</button>
+                   </div>
+               </form>
+
+		</div>
 
         </div>
     </div>

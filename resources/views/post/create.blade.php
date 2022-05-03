@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <button type="submit" class="btn btn-primary">Post!</button>
+                        <button type="submit" class="btn btn-primary">Add Item!</button>
                     </div>
 
                 </form>

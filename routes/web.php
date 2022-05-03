@@ -26,11 +26,9 @@ Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])
 Route::get('/profile/create', [App\Http\Controllers\ProfileController::class, 'create']); // create profile
 Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit']);  // edit profile 
 
-Route::post('/profile/postCreate', [App\Http\Controllers\ProfileController::class, 'postCreate'])->name('profile.postCreate'); // create post
-Route::post('/profile/{id}/postEdit', [App\Http\Controllers\ProfileController::class, 'postEdit'])->name('profile.postEdit'); // edit post
+Route::post('/profile/postCreate', [App\Http\Controllers\ProfileController::class, 'postCreate']); // create post ->name('profile.postCreate');
+Route::post('/profile/{id}/postEdit', [App\Http\Controllers\ProfileController::class, 'postEdit']); // edit post ->name('profile.postEdit');
 
-Route::resource('post', App\Http\Controllers\PostController::class)
+Route::resource('post', App\Http\Controllers\PostController::class);
 
-
-Route::resource('/post/showPosts', App\Http\Controllers\PostController::class);
-
+Route::post('/post/showPosts', [App\Http\Controllers\PostController::class, 'showPosts']);  // show all posts 

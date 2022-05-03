@@ -25,23 +25,25 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container"><div style="background-image: url('images/HDB1.jpg');">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="images/kampongsslogo.png" alt=""width="1000" height="250">
-                   <!-- {{ config('app.name', 'KampongSS') }} -->
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        <!-- Left Side Of Navbar -->
-                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                       <ul class="navbar-nav mr-auto">
+        <div class="mx-auto">
+                <div class="container">
+            <nav class="hdb-img navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+                        <a  class="logo-img flex justify-center pt-8 sm:justify-center" href="{{ url('/') }}">
+                                            <!-- To add code to call the logo function -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        </a>
+                
+              
+            <!-- Left Side Of Navbar -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
                         </ul>
-        <!-- Right Side Of Navbar -->
+            <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
-        <!-- Authentication Links -->
+            <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -70,11 +72,13 @@
                             @endguest
                         </ul>
                     </div>
-        </nav>
-
+                </nav>
+       
         <main class="py-4">
             @yield('content')
         </main>
+            </div> 
+        </div>         
     </div>
 </body>
 </html>

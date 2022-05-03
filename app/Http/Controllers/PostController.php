@@ -21,7 +21,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()  // create new post
     {
         return view('post.create');
     }
@@ -34,7 +34,7 @@ class PostController extends Controller
      */
     
 
-    public function store(Request $request)
+    public function store(Request $request) //(we called this postCreate() in Tinkergram) for saving a new post
     {
         $data = request()->validate([
             'description' => 'required',
@@ -49,6 +49,7 @@ class PostController extends Controller
         $profile->description = request('description');
         $profile->image = $imagePath;
         $saved = $profile->save();
+        
 
         if ($saved) {
             return redirect('/profile');
@@ -63,11 +64,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($postID){
+    public function show($postID){                      // for displaying a single post
         $post = Post::where('id', $postID)->first();
         $user = Auth::user();
         
-        return view('post.show',[
+        return view('post.showPosts',[
             'post' => $post,
             'user' => $user
         ]);
@@ -80,7 +81,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post)  //to edit a single post
     {
         //
     }
@@ -92,7 +93,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post)  //  (we called this postEdit() for Tinkergram) for saving an edit
     {
         //
     }
@@ -103,7 +104,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($post)
+    public function destroy($post)    // for deleting a single post.
     {
         Post::where('id', $post)->first()->delete();
         return redirect('/profile');
