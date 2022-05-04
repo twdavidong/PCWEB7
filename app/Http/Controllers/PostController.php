@@ -1,11 +1,13 @@
-<?php
+dddddddddddddddddddddddddddddddddddddddddd<?php
 
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Schema\PostgresBuilder;
 
 class PostController extends Controller
 {
@@ -14,6 +16,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -40,7 +43,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'caption' => 'required',
+            'description' => 'required',
             'postpic' => ['required', 'image'],
         ]);
 
@@ -49,7 +52,7 @@ class PostController extends Controller
         $imagePath = request('postpic')->store('uploads', 'public');
 
         $profile->user_id = $user->id;
-        $profile->caption = request('caption');
+        $profile->description = request('description');
         $profile->image = $imagePath;
         $saved = $profile->save();
 
@@ -57,7 +60,6 @@ class PostController extends Controller
             return redirect('/profile');
         }
     }
-
 
 
     /**
@@ -72,7 +74,8 @@ class PostController extends Controller
         
         return view('post.show', [
             'post' => $post,
-            'user' => $user
+            'user' => $user,
+            'postName' => $post
         ]);
     }
     
@@ -111,4 +114,5 @@ class PostController extends Controller
         Post::where('id', $post)->first()->delete();
         return redirect('/profile');
     }
+
 }

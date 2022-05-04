@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,6 @@ Route::post('/profile/postCreate', [App\Http\Controllers\ProfileController::clas
 Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit']);
 Route::post('/profile/{id}/postEdit', [App\Http\Controllers\ProfileController::class, 'postEdit'])->name('profile.postEdit');
 
-Route::resource('post', App\Http\Controllers\PostController::class);
+Route::resource('/post', PostController::class);
+
+

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Profile;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -13,14 +15,19 @@ class ProfileController extends Controller
         $user = Auth::user();
         $profile = Profile::where('user_id', $user->id)->first();
         // $posts = \App\Models\Post::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
-        $posts = \App\Models\Post::all();
+        $posts = \App\Models\Post::all();  // get all data frin Post model
         $numPosts = \App\Models\Post::where('user_id', $user->id)->count();
+
+        $userName = DB::table('posts')
+        ->rightJoin('users', 'posts.user_id', '=', 'users.id')
+        ->get();
 
         return view('profile', [
             'user' => $user,
             'profile' => $profile,
             'posts' => $posts,
-            'numPosts' => $numPosts
+            'numPosts' => $numPosts,
+            'userName' => $userName
         ]);
     }
 
@@ -78,6 +85,7 @@ class ProfileController extends Controller
             $profile = new Profile();
             $profile->user_id = $user->id;
         }
+        
         $profile->description = request('description');
         // Save the new profile pic... if there is one in the request()!
         if (request()->has('profilepic')) {

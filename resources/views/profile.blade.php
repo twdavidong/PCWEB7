@@ -19,9 +19,7 @@
             <div class="col-4 mb-5">
                 <a href="/post/{{$post->id}}">
                     <span>{{$post->user_id}} </span> <!-- showing userID $post->user_id-->
-     
-                       <span>{{$profile->user_id = $user->id}}</span>   <!-- get name $post->user_id-->
-
+                        
                         <!-- Convert user_id to name -->
 
                     <span>{{$post->description}}</span>  <!-- showing post description -->
